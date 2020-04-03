@@ -137,7 +137,7 @@ public class Cache extends CordovaPlugin {
    * @throws Exception
    */
   public void getCacheSize(CallbackContext callbackContext) {
-    File file = cordova.getActivity().getCacheDir();
+    File cache = cordova.getActivity().getCacheDir();
     File appDir = new File(cache.getParent());
     try {
       String fileSize = getFormatSize(getFolderSize(appDir));
