@@ -21,11 +21,11 @@
 
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="cacheclear" >
-                <param name="android-package" value="com.stardrv.cordova.plugin.cacheclear.cacheclear"/>
+                <param name="android-package" value="com.stardrv.cordova.plugin.cacheclear"/>
             </feature>
         </config-file>
 
-        <source-file src="src/android/cacheclear.java" target-dir="src/com/stardrv/cordova/plugin/cacheclear" />
+        <source-file src="src/android/cacheclear.java" target-dir="src/com/stardrv/cordova/plugin" />
     </platform>
 
     <!-- ios -->
