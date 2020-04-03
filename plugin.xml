@@ -8,29 +8,29 @@
     <repo>https://github.com/zsjinwei/cordova-plugin-cache.git</repo>
     <keywords>webview,cache,clear,android,ios</keywords>
     <license>MIT</license>
-    <author>Modern Alchemists OG</author>
+    <author>stardrv</author>
     <description>
       &lt;p&gt;This is a WebView cache plugin for Cordova 6.1.1+ supporting Android (>=4.1) and iOS(>=6.0). It allows to clear the cordova webview cache.&lt;/p&gt;
     </description>
 
     <!-- android -->
     <platform name="android">
-        <js-module src="www/cacheClear.js" name="cacheclear">
+        <js-module src="www/cacheclear.js" name="cacheclear">
             <clobbers target="cacheclear" /><!-- will be available under window.cacheclear -->
         </js-module>
 
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="cacheclear" >
-                <param name="android-package" value="com.stardrv.cordova.plugin.cacheclear"/>
+                <param name="android-package" value="com.stardrv.cordova.plugin.cacheclear.cacheclear"/>
             </feature>
         </config-file>
 
-        <source-file src="src/android/cacheClear.java" target-dir="src/com/stardrv/cordova/plugin/cacheclear" />
+        <source-file src="src/android/cacheclear.java" target-dir="src/com/stardrv/cordova/plugin/cacheclear" />
     </platform>
 
     <!-- ios -->
     <platform name="ios">
-        <js-module src="www/cacheClear.js" name="cacheclear">
+        <js-module src="www/cacheclear.js" name="cacheclear">
             <clobbers target="cacheclear" /><!-- will be available under window.cacheclear -->
         </js-module>
 
@@ -40,7 +40,7 @@
             </feature>
         </config-file>
 
-        <header-file src="src/ios/cacheClear.h" />
-        <source-file src="src/ios/cacheClear.m" />
+        <header-file src="src/ios/cacheclear.h" />
+        <source-file src="src/ios/cacheclear.m" />
     </platform>
 </plugin>
