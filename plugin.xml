@@ -20,7 +20,7 @@
         </js-module>
 
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="cache" >
+            <feature name="Cache" >
                 <param name="android-package" value="com.stardrv.cordova.plugin.Cache"/>
             </feature>
         </config-file>
@@ -35,8 +35,8 @@
         </js-module>
 
         <config-file target="config.xml" parent="/*">
-            <feature name="cache">
-                <param name="ios-package" value="cache" />
+            <feature name="Cache">
+                <param name="ios-package" value="Cache" />
             </feature>
         </config-file>
 
