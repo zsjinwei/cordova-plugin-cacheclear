@@ -35,10 +35,17 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.util.Log;
 
-/**
- * 缓存清理插件
- */
-public class cacheclear extends CordovaPlugin {
+@TargetApi(19)
+public class Cache extends CordovaPlugin {
+
+  private static final String LOG_TAG = "CacheClear";
+  private CallbackContext callbackContext;
+
+  /**
+   * Constructor.
+   */
+  public Cache() {}
+
   @Override
   public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
     if (action.equals("clearCache")) {
@@ -58,35 +65,73 @@ public class cacheclear extends CordovaPlugin {
    * @return
    */
   private void clearCache(CallbackContext callbackContext) {
-    File cacheDic = cordova.getActivity().getCacheDir();
     try {
-      deleteFilesByDirectory(cacheDic);
-      callbackContext.success("缓存清理成功");
+      Log.v(LOG_TAG,"Cordova Android clearCache() called.");
+      this.callbackContext = callbackContext;
+      final Cache self = this;
+
+      cordova.getActivity().runOnUiThread( new Runnable() {
+        public void run() {
+          try {
+            // clear the cache
+            self.webView.clearCache(true);
+
+            // clear the data
+            self.clearApplicationData();
+
+            // send success result to cordova
+            PluginResult result = new PluginResult(PluginResult.Status.OK);
+            result.setKeepCallback(false);
+            self.callbackContext.sendPluginResult(result);
+          }
+          catch( Exception e ) {
+            String msg = "Error while clearing webview cache.";
+            Log.e(LOG_TAG, msg);
+            // return error answer to cordova
+            PluginResult result = new PluginResult(PluginResult.Status.ERROR, msg);
+            result.setKeepCallback(false);
+            self.callbackContext.sendPluginResult(result);
+          }
+        }
+      });
     } catch (Exception e) {
       e.getCause();
-      callbackContext.error("缓存清理失败");
+      PluginResult result = new PluginResult(PluginResult.Status.ERROR, "clearCache failed");
+      result.setKeepCallback(false);
+      callbackContext.sendPluginResult(result);
     }
   }
 
-  /**
-   * * 删除方法 这里只会删除某个文件夹下的文件，如果传入的directory是个文件，将不做处理 * *
-   *
-   * @param directory
-   */
-  private static void deleteFilesByDirectory(File directory) {
-    File[] fileList = directory.listFiles();
-    for (int i = 0; i < fileList.length; i++) {
-      if (fileList[i].isDirectory()) {
-        deleteFilesByDirectory(fileList[i]);
-      } else {
-        fileList[i].delete();
+  private void clearApplicationData() {
+    File cache = this.cordova.getActivity().getCacheDir();
+    File appDir = new File(cache.getParent());
+    Log.i(LOG_TAG, "Absolute path: " + appDir.getAbsolutePath());
+    if (appDir.exists()) {
+      String[] children = appDir.list();
+      for (String s : children) {
+        if (!s.equals("lib")) {
+          deleteDir(new File(appDir, s));
+          Log.i(LOG_TAG, "File /data/data/APP_PACKAGE/" + s + " DELETED");
+        }
       }
     }
   }
 
+  private static boolean deleteDir(File dir) {
+    Log.i(LOG_TAG, "Deleting: " + dir.getAbsolutePath());
+    if (dir != null && dir.isDirectory()) {
+      String[] children = dir.list();
+      for (int i = 0; i < children.length; i++) {
+        boolean success = deleteDir(new File(dir, children[i]));
+        if (!success) {
+          return false;
+        }
+      }
+    }
+    return dir.delete();
+  }
+
   /**
-   * 获取格式化后文件大小
-   *
    * @param file
    * @return
    * @throws Exception
@@ -102,8 +147,6 @@ public class cacheclear extends CordovaPlugin {
   }
 
   /**
-   * 获取文件大小
-   *
    * @param file
    * @return
    * @throws Exception
@@ -122,8 +165,6 @@ public class cacheclear extends CordovaPlugin {
   }
 
   /**
-   * 格式化长度
-   *
    * @param size
    * @return
    */

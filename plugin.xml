@@ -4,7 +4,7 @@
     id="com.stardrv.cordova.plugin.cacheclear"
     version="1.1.0">
 
-    <name>cacheclear</name>
+    <name>CacheClear</name>
     <repo>https://github.com/zsjinwei/cordova-plugin-cacheclear.git</repo>
     <keywords>webview,cache,clear,android,ios</keywords>
     <license>MIT</license>
@@ -15,32 +15,32 @@
 
     <!-- android -->
     <platform name="android">
-        <js-module src="www/cacheclear.js" name="cacheclear">
-            <clobbers target="cacheclear" /><!-- will be available under window.cacheclear -->
+        <js-module src="www/cache.js" name="cache">
+            <clobbers target="cache" /><!-- will be available under window.cache -->
         </js-module>
 
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="cacheclear" >
-                <param name="android-package" value="com.stardrv.cordova.plugin.cacheclear"/>
+            <feature name="cache" >
+                <param name="android-package" value="com.stardrv.cordova.plugin.Cache"/>
             </feature>
         </config-file>
 
-        <source-file src="src/android/cacheclear.java" target-dir="src/com/stardrv/cordova/plugin" />
+        <source-file src="src/android/Cache.java" target-dir="src/com/stardrv/cordova/plugin" />
     </platform>
 
     <!-- ios -->
     <platform name="ios">
-        <js-module src="www/cacheclear.js" name="cacheclear">
-            <clobbers target="cacheclear" /><!-- will be available under window.cacheclear -->
+        <js-module src="www/cache.js" name="cache">
+            <clobbers target="cache" /><!-- will be available under window.cache -->
         </js-module>
 
         <config-file target="config.xml" parent="/*">
-            <feature name="cacheclear">
-                <param name="ios-package" value="cacheclear" />
+            <feature name="cache">
+                <param name="ios-package" value="cache" />
             </feature>
         </config-file>
 
-        <header-file src="src/ios/cacheclear.h" />
-        <source-file src="src/ios/cacheclear.m" />
+        <header-file src="src/ios/Cache.h" />
+        <source-file src="src/ios/Cache.m" />
     </platform>
 </plugin>

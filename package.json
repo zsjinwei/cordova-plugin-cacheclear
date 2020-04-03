@@ -9,7 +9,7 @@
     "type": "git",
     "raw": "https://github.com/zsjinwei/cordova-plugin-cacheclear",
     "rawSpec": "https://github.com/zsjinwei/cordova-plugin-cacheclear",
-    "saveSpec": "git+https://github.com/zsjinwei/cordova-plugin-cachecleat.git",
+    "saveSpec": "git+https://github.com/zsjinwei/cordova-plugin-cacheclear.git",
     "fetchSpec": "https://github.com/zsjinwei/cordova-plugin-cacheclear.git",
     "gitCommittish": null
   },

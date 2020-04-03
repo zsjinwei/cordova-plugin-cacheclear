@@ -1,6 +1,6 @@
-#import "cacheclear.h"
+#import "Cache.h"
 
-@implementation cacheclear
+@implementation Cache
 
 //默认调用检查缓存
 - (void)getCacheSize:(CDVInvokedUrlCommand *)command
