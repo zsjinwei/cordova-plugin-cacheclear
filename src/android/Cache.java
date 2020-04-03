@@ -138,8 +138,9 @@ public class Cache extends CordovaPlugin {
    */
   public void getCacheSize(CallbackContext callbackContext) {
     File file = cordova.getActivity().getCacheDir();
+    File appDir = new File(cache.getParent());
     try {
-      String fileSize = getFormatSize(getFolderSize(file));
+      String fileSize = getFormatSize(getFolderSize(appDir));
       callbackContext.success(fileSize);
     } catch (Exception e) {
       callbackContext.error("获取缓存长度失败");
