@@ -18,7 +18,7 @@
   SOFTWARE.
 */
 
-package com.stardrv.cordova.plugin.cacheclear;
+package com.stardrv.cordova.plugin;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
