@@ -103,8 +103,8 @@ public class Cache extends CordovaPlugin {
   }
 
   private void clearApplicationData() {
-    File cache = this.cordova.getActivity().getCacheDir();
-    File appDir = new File(cache.getParent());
+    File appDir = this.cordova.getActivity().getCacheDir();
+    // File appDir = new File(cache.getParent());
     Log.i(LOG_TAG, "Absolute path: " + appDir.getAbsolutePath());
     if (appDir.exists()) {
       String[] children = appDir.list();
@@ -137,8 +137,8 @@ public class Cache extends CordovaPlugin {
    * @throws Exception
    */
   public void getCacheSize(CallbackContext callbackContext) {
-    File cache = cordova.getActivity().getCacheDir();
-    File appDir = new File(cache.getParent());
+    File appDir = cordova.getActivity().getCacheDir();
+    // File appDir = new File(cache.getParent());
     try {
       String fileSize = getFormatSize(getFolderSize(appDir));
       callbackContext.success(fileSize);
