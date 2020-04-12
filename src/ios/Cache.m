@@ -5,7 +5,6 @@
 //默认调用检查缓存
 - (void)getCacheSize:(CDVInvokedUrlCommand *)command
 {
-    NSLog(@"HJW DEBUG");
     [self.commandDelegate runInBackground:^{
         NSLog(@"检查缓存");
         NSString *path = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
