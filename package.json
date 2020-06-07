@@ -28,7 +28,7 @@
   },
   "bundleDependencies": false,
   "cordova": {
-    "id": "com.stardrv.cordova.plugin.cacheclear",
+    "id": "cordova-plugin-cacheclear",
     "platforms": [
       "ios",
       "android"
